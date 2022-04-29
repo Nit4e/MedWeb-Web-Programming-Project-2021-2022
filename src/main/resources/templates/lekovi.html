@@ -1,0 +1,100 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading"> Лекови </h3>
+        </div>
+    </section>
+
+    <div class="container mb-4">
+        <div class="row">
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="col-12" th:if="${lekoviList.size() > 0}">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col"> Лек </th>
+                                <th scope="col"> ИД </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="lek : ${lekoviList}" class="lek">
+                                <td th:text="${lek.getIme_lek()}"></td>
+                                <td th:text="${lek.getLek_id()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block sec:authorize="hasRole('ROLE_DOKTOR')">
+                <div class="col-12" th:if="${prepisaniLekoviList.size() > 0}">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col"> Лек ИД </th>
+                                <th scope="col"> Име на лек </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="lek : ${prepisaniLekoviList}" th:if="${#request.getRemoteUser() == lek.getKorisnik().getUsername()}">
+                                <td th:text="${lek.getLekovi().getLek_id()}"></td>
+                                <td th:text="${lek.getLekovi().getIme_lek()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block sec:authorize="hasRole('ROLE_PACIENT')">
+                <div class="col-12" th:if="${prepisaniLekovi.size() > 0}">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col"> Лек ИД </th>
+                                <th scope="col"> Име на лек </th>
+                                <th scope="col">  </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr style="display: none" th:each="lek : ${prepisaniLekovi}" th:if="${#request.getRemoteUser() == lek.getPacient_username()}">
+                                <td th:text="${lek.getLek_id()}"></td>
+                                <td th:text="${lek.getLekovi().getIme_lek()}"></td>
+                                <td class="text-right">
+                                    <form th:action="@{'/shopping-cart/add-lek/{id}' (id=${lek.getLek_id()})}"
+                                          th:method="POST"
+                                          sec:authorize="isAuthenticated()">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-primary cart-product">
+                                            <i class="fa fa-trash"> Add to cart </i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <tr th:each="lek : ${prepisaniLekovi}" th:if="${#request.getRemoteUser() == lek.getPacient_username()}">
+                                <td th:text="${lek.getLek_id()}"></td>
+                                <td th:text="${lek.getLekovi().getIme_lek()}"></td>
+                                <td class="text-right">
+                                    <form th:action="@{'/shopping-cart/add-lek/{id}' (id=${lek.getLek_id()})}"
+                                          th:method="POST"
+                                          sec:authorize="isAuthenticated()">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-primary cart-product">
+                                            <i class="fa fa-trash"> Add to cart </i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>

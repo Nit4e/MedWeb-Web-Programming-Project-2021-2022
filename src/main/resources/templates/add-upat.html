@@ -1,0 +1,73 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">MEDWEB</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/upati/add" method="POST">
+                    <input id="id" type="hidden" name="id" th:value="(${upat} != null ? ${upat.getUpat_id()} : '')">
+                    <div class="form-group" style="display: none">
+                        <label for="doktor">Дијагноза</label>
+                        <input type="text"
+                               class="form-control"
+                               id="doktor"
+                               name="doktor"
+                               th:value="(${upat} != null ? ${upat.getDoktor()} : ${#request.getRemoteUser()})"
+                               placeholder="Дијагноза">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dijagnoza">Дијагноза</label>
+                        <input type="text"
+                               class="form-control"
+                               id="dijagnoza"
+                               name="dijagnoza"
+                               th:value="(${upat} != null ? ${upat.getDijagnoza()} : '')"
+                               placeholder="Дијагноза">
+                    </div>
+                    <div class="form-group">
+                        <label>Избери корисник</label>
+                        <select name="korisnik" class="form-control">
+                            <option th:if="${upat} != null"
+                                    th:selected="${upat.getKorisnik() != null &&
+                                upat.getKorisnik().getCovek_id() == kor.getCovek_id()}"
+                                    th:each="kor : ${korisnici}"
+                                    th:text="${kor.getUsername()}"
+                                    th:value="${kor.getCovek_id()}">
+                            </option>
+                            <option th:if="${upat} == null"
+                                    th:each="kor : ${korisnici}"
+                                    th:text="${kor.getUsername()}"
+                                    th:value="${kor.getCovek_id()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Избери оддел</label>
+                        <select name="oddel" class="form-control">
+                            <option th:if="${upat} != null"
+                                    th:selected="${upat.getOddel() != null && upat.getOddel().getOddel_id() == odd.getOddel_id()}"
+                                    th:each="odd : ${oddeli}"
+                                    th:text="${odd.getNaziv()} + ' - ' + ${odd.getBolnica_id().getNaziv()}"
+                                    th:value="${odd.getOddel_id()}">
+                            </option>
+
+                            <option th:if="${upat} == null"
+                                    th:each="odd : ${oddeli}"
+                                    th:text="${odd.getNaziv()} + ' - ' + ${odd.getBolnica_id().getNaziv()}"
+                                    th:value="${odd.getOddel_id()}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/upati">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>

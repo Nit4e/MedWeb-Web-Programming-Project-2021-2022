@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <h3 align="justify"> </h3>
+    <div class="card" style="width: 55rem; ">
+        <div class="card-header text-center bg-info ">
+            <h5> Внеси Термин </h5>
+        </div>
+        <div class="card-body">
+
+            <form action="/doktor/save-termin" method="POST">
+                <div class="form-group">
+
+                    <label for="dateField"> Датум и време </label>
+                    <input type="datetime-local" placeholder="yyyy-mm-ddThh:mm" class="form-control" id="dateField" aria-describedby="emailHelp" th:name="vreme">
+                </div>
+                <button id="submit" type="submit" class="btn btn-primary"> Потврди </button>
+            </form>
+        </div>
+    </div>
+</div>

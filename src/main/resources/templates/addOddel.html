@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 th:if="${hasError}" th:text="${error}"></h1>
+</div>
+<div class="container">
+    <form class="form-signin mt-xl-5" method="post" action="/admin/oddel/add">
+        <h2 class="form-signin-heading"> Оддел </h2>
+        <p>
+            <label for="naziv" class="sr-only"> Назив оддел </label>
+            <input type="text" id="naziv" name="naziv" class="form-control" placeholder="naziv" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="bolnica_id" class="sr-only"> Болница во која се наоѓа </label>
+            <select id="bolnica_id" name="bolnica_id" class="form-control">
+                <option th:if="${bolnicaList.size() > 0}"
+                        th:each="bolnica : ${bolnicaList}"
+                        th:value="${bolnica.getBolnica_id()}"
+                        th:text="${bolnica.getNaziv()}">
+                </option>
+            </select>
+        </p>
+        <p>
+            <label for="specijalnost_id" class="sr-only"> Специјалности во одделот </label>
+            <select id="specijalnost_id" name="specijalnost_id" class="form-control">
+                <option th:if="${specijalnostList.size() > 0}"
+                        th:each="spec : ${specijalnostList}"
+                        th:value="${spec.getSpec_id()}"
+                        th:text="${spec.getNaziv()}">
+                </option>
+            </select>
+        </p>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit"> Додади </button>
+    </form>
+</div>

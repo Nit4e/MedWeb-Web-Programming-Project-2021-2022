@@ -1,0 +1,37 @@
+<div class="container">
+    <h1 th:if="${hasError}" th:text="${error}"></h1>
+</div>
+<div class="container">
+    <form class="form-signin mt-xl-5" method="post" action="/doktor/prepisi-lek">
+        <h2 class="form-signin-heading"> Препиши лек </h2>
+        <div class="hide" >
+            <label for="doktorId" class="sr-only"> Доктор </label>
+            <select id="doktorId" name="doktorId" class="form-control">
+                <option th:value="${#request.getRemoteUser()}"
+                        th:text="${#request.getRemoteUser()}">
+                </option>
+            </select>
+        </div>
+        <div class="hide" id="hide-div1">
+            <label for="lekId" class="sr-only"> Листа на лекови </label>
+            <select id="lekId" name="lekId" class="form-control">
+                <option th:if="${lekoviList.size() > 0}"
+                        th:each="lek : ${lekoviList}"
+                        th:value="${lek.getLek_id()}"
+                        th:text="${lek.getIme_lek()}">
+                </option>
+            </select>
+        </div>
+        <div class="hide" id="hide-div2">
+            <label for="pacientId" class="sr-only"> Листа на пациенти </label>
+            <select id="pacientId" name="pacientId" class="form-control">
+                <option th:if="${korisnikList.size() > 0}"
+                        th:each="korisnik : ${korisnikList}"
+                        th:value="${korisnik.getUsername()}"
+                        th:text="${korisnik.getIme()}">
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"> Потврди </button>
+    </form>
+</div>

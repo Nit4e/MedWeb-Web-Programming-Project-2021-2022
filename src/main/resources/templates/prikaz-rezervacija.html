@@ -1,0 +1,38 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading"> Преглед за закажаниот термин на </br>
+                <th:block th:text="${termin.getVreme()}"></th:block>
+            </h3>
+        </div>
+    </section>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <h4 class="text-center"> Податоци </h4>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"> Упат ИД</th>
+                            <th scope="col"> Термин ИД </th>
+                            <th scope="col"> Доктор ИД </th>
+                            <th scope="col"> Резервација ИД </th>
+                            <th scope="col"> Трансакција ИД </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${upat.getUpat_id()}"></td>
+                            <td th:text="${termin.getTermin_id()}"></td>
+                            <td th:text="${termin.getCovek_id()}"></td>
+                            <td th:text="${rezervacija.getRezervacija_id()}"></td>
+                            <td th:text="${transakcija.getTran_id()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

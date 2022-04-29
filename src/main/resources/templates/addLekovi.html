@@ -1,0 +1,19 @@
+<div class="container">
+    <h1 th:if="${hasError}" th:text="${error}"></h1>
+</div>
+<div class="container">
+    <form class="form-signin mt-xl-5" method="post" action="/admin/lekovi/add">
+        <h2 class="form-signin-heading"> Лек </h2>
+        <p>
+            <label for="generickoIme" class="sr-only"> Генеричко име на лек </label>
+            <input type="text" id="generickoIme" name="generickoIme" class="form-control" placeholder="generickoIme" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="imeLek" class="sr-only"> Име на лек </label>
+            <input type="text" id="imeLek" name="imeLek" class="form-control" placeholder="imeLek" required=""
+                   autofocus="">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"> Додади </button>
+    </form>
+</div>

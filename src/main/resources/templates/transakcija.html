@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <div class="card" style="width: 55rem; ">
+        <div class="card-header text-center bg-info ">
+            <h3> Податоци за трансакција </h3>
+        </div>
+        <div class="card-body">
+            <form th:action="@{'/pacient/validiraj/rezervacija/{id}' (id = ${rezervacija.getRezervacija_id()})}"
+                  th:method="POST" name="fill">
+                <div class="form-group">
+                    <label for="namesurname"> Име и Презиме </label>
+                    <input type="text" class="form-control" id="namesurname" name="namesurname" aria-describedby="emailHelp" required>
+                </div>
+                <div class="form-group">
+                    <label for="numacc"> Број на сметка </label>
+                    <input type="text" class="form-control" id="numacc" name="numacc" aria-describedby="emailHelp" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvc"> CVC код </label>
+                    <input type="text" class="form-control" id="cvc" name="cvc" aria-describedby="emailHelp" required>
+                </div>
+                <div class="form-group">
+                    <label for="date"> Датум важност </label>
+                    <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp" required>
+                </div>
+                <div class="form-group">
+                </div>
+                <script>
+                    function required()
+                    {
+                        var field1 = document.forms["fill"]["namesurname"].value;
+                        var field2 = document.forms["fill"]["numacc"].value;
+                        var field3 = document.forms["fill"]["cvc"].value;
+                        var field4 = document.forms["fill"]["date"].value;
+                        if (field1 == "" || field2 == "" || field3 == "" || field4 == "")
+                        {
+                            alert("Пополнете ги сите полиња!");
+                            return false;
+                        }
+                        else
+                        {
+                            alert("Успешна трансакција!");
+                            return true;
+                        }
+                    }
+                </script>
+                <button type="submit" class="btn btn-primary" onclick="required()"> Потврди </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+<style xmlns="http://www.w3.org/1999/html">
+    .hide{
+        display: none;
+    }
+</style>
+
+<script>
+    function showContentAdmin() {
+        document.getElementById("hide-admin").classList.remove("hide");
+        document.getElementById("hide-doktor").classList.add("hide");
+        document.getElementById("hide-pacient").classList.add("hide");
+    }
+
+    function showContentDoktor() {
+        document.getElementById("hide-admin").classList.add("hide");
+        document.getElementById("hide-doktor").classList.remove("hide");
+        document.getElementById("hide-pacient").classList.add("hide");
+    }
+
+    function showContentPacient() {
+        document.getElementById("hide-admin").classList.add("hide");
+        document.getElementById("hide-doktor").classList.add("hide");
+        document.getElementById("hide-pacient").classList.remove("hide");
+    }
+
+</script>
+
+<div class="container">
+    <h1 th:if="${hasError}" th:text="${error}"></h1>
+</div>
+<div class="container">
+    <form class="form-signin mt-xl-5">
+        <h2 class="form-signin-heading"> Регистрирај се </h2>
+        <div class="container mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="role1" type="radio" id="ROLE_ADMIN1"
+                       onclick="showContentAdmin()" value="ROLE_ADMIN1">
+                <label class="form-check-label" for="ROLE_ADMIN1">ROLE_ADMIN</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="role1" type="radio" id="ROLE_DOKTOR1"
+                       onclick="showContentDoktor()" value="ROLE_DOKTOR1">
+                <label class="form-check-label" for="ROLE_DOKTOR1">ROLE_DOKTOR</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="role1" type="radio" id="ROLE_PACIENT1"
+                       onclick="showContentPacient()" value="ROLE_PACIENT1">
+                <label class="form-check-label" for="ROLE_PACIENT1">ROLE_PACIENT</label>
+            </div>
+        </div>
+    </form>
+
+    <!--   REGISTRACIJA NA ADMIN   -->
+    <div class="hide" id="hide-admin">
+        <form class="form-signin mt-1" method="post" action="/register">
+            <p style="display: none" class="form-check form-check-inline">
+                <input class="form-check-input" name="role"  type="radio" checked id="ROLE_ADMIN" value="ROLE_ADMIN">
+                <label class="form-check-label" for="ROLE_ADMIN">ROLE_ADMIN</label>
+            </p>
+            <div class="form-check form-check-block">
+                <p>
+                    <label for="username" class="sr-only"> Корисничко име </label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="password" class="sr-only"> Лозинка </label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                           required="">
+                </p>
+                <p>
+                    <label for="repeatedPassword" class="sr-only"> Повтори лозинка </label>
+                    <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control"
+                           placeholder="Repeat Password" required="">
+                </p>
+                <p>
+                    <label for="ime" class="sr-only"> Име </label>
+                    <input type="text" id="ime" name="ime" class="form-control" placeholder="Ime" required="" autofocus="">
+                </p>
+                <p>
+                    <label for="prezime" class="sr-only"> Презиме </label>
+                    <input type="text" id="prezime" name="prezime" class="form-control" placeholder="Prezime" required=""
+                           autofocus="">
+                </p>
+                <p style="display: none">
+                    <label for="telefonski_broja" class="sr-only"> Телефонски број </label>
+                    <input type="tel" id="telefonski_broja" name="telefonski_broj" class="form-control"
+                           placeholder="+389 7x xxxxxx" autofocus=""> <!-- pattern="[+389] {8}" -->
+                </p>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        </form>
+        <a href="/login" class="btn btn-block btn-light">Already have an account? Login here!</a>
+    </div>
+
+    <!--   REGISTRACIJA NA DOKTOR   -->
+    <div class="hide" id="hide-doktor">
+        <form class="form-signin mt-1" method="post" action="/register">
+            <p style="display: none" class="form-check form-check-inline">
+                <input class="form-check-input" name="role" type="radio" checked id="ROLE_DOKTOR" value="ROLE_DOKTOR">
+                <label class="form-check-label" for="ROLE_DOKTOR">ROLE_DOKTOR</label>
+            </p>
+            <div class="form-check form-check-block">
+                <p>
+                    <label for="username" class="sr-only"> Корисничко име </label>
+                    <input type="text" id="usernamed" name="username" class="form-control" placeholder="Username" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="password" class="sr-only"> Лозинка </label>
+                    <input type="password" id="passwordd" name="password" class="form-control" placeholder="Password"
+                           required="">
+                </p>
+                <p>
+                    <label for="repeatedPassword" class="sr-only"> Повтори лозинка </label>
+                    <input type="password" id="repeatedPasswordd" name="repeatedPassword" class="form-control"
+                           placeholder="Repeat Password" required="">
+                </p>
+                <p>
+                    <label for="embgd" class="sr-only"> ЕМБГ </label>
+                    <input type="text" id="embgd" name="embg" class="form-control" placeholder="embg" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="ime" class="sr-only"> Име </label>
+                    <input type="text" id="imed" name="ime" class="form-control" placeholder="Ime" required="" autofocus="">
+                </p>
+                <p>
+                    <label for="prezime" class="sr-only"> Презиме </label>
+                    <input type="text" id="prezimed" name="prezime" class="form-control" placeholder="Prezime" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="telefonski_broj" class="sr-only"> Телефонски број </label>
+                    <input type="tel" id="telefonski_brojd" name="telefonski_broj" class="form-control"
+                           placeholder="+389 7x xxxxxx" autofocus=""> <!-- pattern="[+389] {8}" -->
+                </p>
+                <p>
+                    <label for="specijalnostId" class="sr-only"> Специјалност </label>
+                    <select id="specijalnostId" name="specijalnostId" class="form-control">
+                        <option th:if="${specijalnostList.size() > 0}"
+                                th:each="spec : ${specijalnostList}"
+                                th:value="${spec.getSpec_id()}"
+                                th:text="${spec.getNaziv()}">
+                        </option>
+                    </select>
+                </p>
+                <p>
+                    <label for="oddelId" class="sr-only"> Оддел </label>
+                    <select id="oddelId" name="oddelId" class="form-control">
+                        <option th:if="${oddelList.size() > 0}"
+                                th:each="oddel : ${oddelList}"
+                                th:value="${oddel.getOddel_id()}"
+                                th:text="${oddel.getNaziv()} + ' - ' + ${oddel.getBolnica_id().getNaziv()}">
+                        </option>
+                    </select>
+                </p>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        </form>
+        <a href="/login" class="btn btn-block btn-light">Already have an account? Login here!</a>
+    </div>
+
+
+    <!--   REGISTRACIJA NA PACIENT   -->
+    <div class="hide" id="hide-pacient">
+        <form class="form-signin mt-1" method="post" action="/register">
+            <p style="display: none" class="form-check form-check-inline">
+                <input class="form-check-input" name="role" type="radio" checked id="ROLE_PACIENT" value="ROLE_PACIENT">
+                <label class="form-check-label" for="ROLE_PACIENT">ROLE_PACIENT</label>
+            </p>
+            <div class="form-check form-check-block">
+                <p>
+                    <label for="username" class="sr-only"> Корисничко име </label>
+                    <input type="text" id="usernamep" name="username" class="form-control" placeholder="Username" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="password" class="sr-only"> Лозинка </label>
+                    <input type="password" id="passwordp" name="password" class="form-control" placeholder="Password"
+                           required="">
+                </p>
+                <p>
+                    <label for="repeatedPassword" class="sr-only"> Повтори лозинка </label>
+                    <input type="password" id="repeatedPasswordp" name="repeatedPassword" class="form-control"
+                           placeholder="Repeat Password" required="">
+                </p>
+                <p>
+                    <label for="embgp" class="sr-only"> ЕМБГ </label>
+                    <input type="text" id="embgp" name="embg" class="form-control" placeholder="embg" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="ime" class="sr-only"> Име </label>
+                    <input type="text" id="imep" name="ime" class="form-control" placeholder="Ime" required="" autofocus="">
+                </p>
+                <p>
+                    <label for="prezime" class="sr-only"> Презиме </label>
+                    <input type="text" id="prezimep" name="prezime" class="form-control" placeholder="Prezime" required=""
+                           autofocus="">
+                </p>
+                <p>
+                    <label for="telefonski_broj" class="sr-only"> Телефонски број </label>
+                    <input type="tel" id="telefonski_broj" name="telefonski_broj" class="form-control"
+                           placeholder="+389 7x xxxxxx" autofocus=""> <!-- pattern="[+389] {8}" -->
+                </p>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        </form>
+        <a href="/login" class="btn btn-block btn-light">Already have an account? Login here!</a>
+    </div>
+</div>

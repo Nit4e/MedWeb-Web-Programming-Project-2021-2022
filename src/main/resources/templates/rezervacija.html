@@ -1,0 +1,47 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading"> Трансакција за пациент:
+                <th:block th:if="${#request.getRemoteUser() != null}"
+                          th:text="${#request.getRemoteUser()}"></th:block>
+            </h3>
+        </div>
+    </section>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <h4 class="text-center"> Податоци за термин и упат </h4>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"> Упат ИД</th>
+                            <th scope="col"> Термин ИД </th>
+                            <th scope="col"> Доктор ИД </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${upat.getUpat_id()}"></td>
+                            <td th:text="${termin.getTermin_id()}"></td>
+                            <td th:text="${termin.getCovek_id()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #e9ecef; padding: 10px">
+            <span>
+                <h6 style="font-style: italic"> *За да ја потврдите резервацијата морате да уплатите сума од 50 денари,
+                    инаку ќе биде невалидна!
+                </h6>
+            </span>
+            <span class="mt-auto">
+                <form th:action="@{'/pacient/validiraj/rezervacija/{id}' (id = ${rezervacija.getRezervacija_id()})}">
+                    <button type="submit" class="btn btn-primary"> Валидирајте ја резервацијата </button>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>

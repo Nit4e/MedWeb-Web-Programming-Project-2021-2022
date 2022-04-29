@@ -1,0 +1,36 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading"> Болници </h3>
+        </div>
+    </section>
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${bolnicaList.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"> Болница </th>
+                            <th scope="col"> ИД </th>
+                            <th scope="col"> Град </th>
+                            <th scope="col"> Улица </th>
+                            <th scope="col"> Број </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="bolnica : ${bolnicaList}" class="product">
+                            <td th:text="${bolnica.getNaziv()}"></td>
+                            <td th:text="${bolnica.getBolnica_id()}"></td>
+                            <td th:text="${bolnica.getGrad()}"></td>
+                            <td th:text="${bolnica.getUlica()}"></td>
+                            <td th:text="${bolnica.getBroj()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<header xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 text-sm">
+                    <div class="site-info">
+                        <a href="#"><span class="mai-call text-primary"></span> +389 987 887 765</a>
+                        <span class="divider">|</span>
+                        <a href="#"><span class="mai-mail text-primary"></span> medweb@medweb.com</a>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-right text-sm">
+                    <div class="social-mini-button">
+                        <a href="#"><span class="mai-logo-facebook-f"></span></a>
+                        <a href="#"><span class="mai-logo-twitter"></span></a>
+                        <a href="#"><span class="mai-logo-dribbble"></span></a>
+                        <a href="#"><span class="mai-logo-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container">
+            <div class="col-lg-2 col-md-3 no-padding col-sm-12 nav-img">
+                <a class="navbar-brand" href="/home">
+                    <img th:src="@{../assets/img/logo-medweb.png}" alt="MEDWEB"/>
+                </a>
+                <a data-toggle="collapse" data-target="#menu" href="#menu" ><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport"
+                    aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupport">
+                <ul class="navbar-nav ml-auto" sec:authorize="!isAuthenticated()">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Почетна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about_us.html">За нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Контакт</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Ковид 19</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ml-lg-3" href="/login">Најави се / Регистрирај се</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" href="/admin/bolnica/add"> Додади болница </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" href="/admin/specijalnost/add"> Додади специјалност </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" href="/admin/oddel/add"> Додади оддел </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link active" href="/admin/lekovi/add"> Додади лек </a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
+                        <a class="nav-link active" th:href="@{'/pacient/{username}/lekovi'
+                                        (username=${#request.getRemoteUser()})}"> Мои лекови </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
+                        <a class="nav-link active" href="/upati">Мои упати</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
+                        <a class="nav-link active" th:href="@{'/pacient/prikazi-rezervacii'}">Мои резервации</a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_DOKTOR')">
+                        <a class="nav-link active" href="/doktor/prepisi-lek"> Препиши лек </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_DOKTOR')">
+                        <a class="nav-link active" href="/upati">Упати</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_DOKTOR')">
+                        <a class="nav-link active" href="/doktor/moi-termini">Мои термини</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="#">
+                            <th:block th:if="${#request.getRemoteUser() != null}"
+                                      th:text="${#request.getRemoteUser()}"></th:block>
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
+                        <a class="btn btn-primary ml-lg-3" href="/shopping-cart">
+                           Cart
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="btn btn-primary ml-lg-3" href="/logout">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

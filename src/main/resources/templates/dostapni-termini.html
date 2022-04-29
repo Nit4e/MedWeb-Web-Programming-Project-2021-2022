@@ -1,0 +1,62 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div>
+            <h3> Упат </h3>
+        </div>
+    </section>
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col"> Упат ИД</th>
+                            <th scope="col"> Дијагноза </th>
+                            <th scope="col"> Оддел Назив </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${upat.getUpat_id()}"></td>
+                            <td th:text="${upat.getDijagnoza()}"></td>
+                            <td th:text="${upat.getOddel().getNaziv()} + ' - ' + ${upat.getOddel().getBolnica_id().getNaziv()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-4">
+        <h3> Листа на термини </h3>
+    </div>
+    <div class="container mb-4">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"> Доктор ИД </th>
+                <th scope="col"> Термин ИД </th>
+                <th scope="col"> Време </th>
+                <th scope="col"> Акција </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="termin : ${terminList}">
+                <th scope="row"> • </th>
+                <td th:text="${termin.getCovek_id()}"></td>
+                <td th:text="${termin.getTermin_id()}"></td>
+                <td th:text="${termin.getVreme()}"></td>
+                <td class="text-left">
+                    <form th:action="@{'/pacient/rezervacija/{termin_id}' (termin_id=${termin.getTermin_id()})}"
+                          th:method="POST">
+                        <button  type="submit" class="btn btn-sm btn-info"> Закажи </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
