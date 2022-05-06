@@ -3,7 +3,7 @@
         <h1 th:if="${hasError}" th:text="${error}"></h1>
     </div>
     <div class="container">
-        <form class="form-signin mt-xl-5" method="post" th:action="@{/admin/bolnica/add}">
+        <form class="form-signin mt-xl-5" method="post" th:action="@{/admin/add-bolnica}">
             <h2 class="form-signin-heading"> Болница </h2>
             <p>
                 <label for="naziv" class="sr-only"> Назив на болница </label>
@@ -27,12 +27,11 @@
             </p>
             <p>
                 <label for="smetka_bolnica" class="sr-only"> Сметка </label>
-                <input type="text" id="smetka_bolnica" name="smetka_bolnica" class="form-control" placeholder="smetka_bolnica" required=""
+                <input type="text" id="smetka_bolnica" name="smetka_bolnica" class="form-control"
+                       placeholder="smetka_bolnica" required=""
                        autofocus="">
             </p>
-            <button class="btn btn-lg btn-primary btn-block" type="submit"> Додади </button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"> Додади</button>
         </form>
     </div>
 </div>
-
-

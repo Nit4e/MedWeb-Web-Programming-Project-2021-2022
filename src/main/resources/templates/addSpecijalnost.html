@@ -1,14 +1,16 @@
-<div>
-    <h1 th:if="${hasError}" th:text="${error}"></h1>
-</div>
-<div class="container">
-    <form class="form-signin mt-xl-5" method="post" action="/admin/specijalnost/add">
-        <h2 class="form-signin-heading"> Специјалност </h2>
-        <p>
-            <label for="naziv" class="sr-only"> Назив на специјалност </label>
-            <input type="text" id="naziv" name="naziv" class="form-control" placeholder="naziv" required=""
-                   autofocus="">
-        </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit"> Додади </button>
-    </form>
+<div class="container mt-3">
+    <div>
+        <h1 th:if="${hasError}" th:text="${error}"></h1>
+    </div>
+    <div class="container">
+        <form class="form-signin mt-xl-5" method="post" action="/admin/add-spec">
+            <h2 class="form-signin-heading"> Специјалност </h2>
+            <p>
+                <label for="naziv" class="sr-only"> Назив на специјалност </label>
+                <input type="text" id="naziv" name="naziv" class="form-control" placeholder="naziv" required=""
+                       autofocus="">
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"> Додади</button>
+        </form>
+    </div>
 </div>

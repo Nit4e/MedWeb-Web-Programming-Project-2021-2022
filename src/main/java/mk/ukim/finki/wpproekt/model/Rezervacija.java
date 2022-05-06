@@ -18,11 +18,13 @@ public class Rezervacija {
 
     @OneToOne
     @JoinColumns({
-            @JoinColumn(name = "covek_id", referencedColumnName = "covek_id"/*, nullable = false*/),
-            @JoinColumn(name = "termin_id", referencedColumnName = "termin_id"/*, nullable = false*/)
+            @JoinColumn(name = "covek_id", referencedColumnName = "covek_id"),
+            @JoinColumn(name = "termin_id", referencedColumnName = "termin_id")
     })
     private Termin termin;
 
+    @OneToOne(mappedBy = "rezervacija")
+    private Transakcija transakcija;
 
     public Rezervacija() {
     }

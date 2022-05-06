@@ -24,7 +24,6 @@ import java.util.List;
 @RequestMapping("/admin")
 public class Controller {
 
-
     private final SpecijalnostService specijalnostService;
     private final BolnicaService bolnicaService;
     private final OddelService oddelService;
@@ -39,10 +38,11 @@ public class Controller {
         this.lekoviService = lekoviService;
     }
 
-// SPECIJALNOST
+
+    // SPECIJALNOST
     @GetMapping("/specijalnost")
     public String listSpecijalnost(@RequestParam(required = false) String error,
-                                    Model model) {
+                                   Model model) {
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
@@ -56,10 +56,11 @@ public class Controller {
         return "master-template";
     }
 
-    @GetMapping("/specijalnost/add")
+    @GetMapping("/add-spec")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String getAddSpecijalnostForm(@RequestParam(required = false) String error, Model model) {
-        if(error != null && !error.isEmpty()) {
+    public String getAddSpecijalnostForm(@RequestParam(required = false) String error,
+                                         Model model) {
+        if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
         }
@@ -67,7 +68,7 @@ public class Controller {
         return "master-template";
     }
 
-    @PostMapping("/specijalnost/add")
+    @PostMapping("/add-spec")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addSpecijalnost (@RequestParam String naziv) {
 
@@ -76,14 +77,13 @@ public class Controller {
             this.specijalnostService.save(specijalnost);
             return "redirect:/admin/specijalnost";
         } catch (RuntimeException exception) {
-            return "redirect:/admin/specijalnost/add?error=" + exception.getMessage();
+            return "redirect:/admin/add-spec?error=" + exception.getMessage();
         }
     }
 
-// BOLNICA
+    // BOLNICA
     @GetMapping("/bolnica")
-    public String listBolnica (@RequestParam(required = false) String error,
-                                   Model model) {
+    public String listBolnica (@RequestParam(required = false) String error, Model model) {
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
@@ -97,7 +97,7 @@ public class Controller {
         return "master-template";
     }
 
-    @GetMapping("/bolnica/add")
+    @GetMapping("/add-bolnica")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getAddBolnicaForm(@RequestParam(required = false) String error, Model model) {
         if(error != null && !error.isEmpty()) {
@@ -108,7 +108,7 @@ public class Controller {
         return "master-template";
     }
 
-    @PostMapping("/bolnica/add")
+    @PostMapping("/add-bolnica")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addBolnica (@RequestParam String naziv,
                               @RequestParam String grad,
@@ -121,14 +121,13 @@ public class Controller {
             this.bolnicaService.save(bolnica);
             return "redirect:/admin/bolnica";
         } catch (RuntimeException exception) {
-            return "redirect:/admin/bolnica/add?error=" + exception.getMessage();
+            return "redirect:/admin/add-bolnica?error=" + exception.getMessage();
         }
     }
 
-// ODDEL
+    // ODDEL
     @GetMapping("/oddel")
-    public String listOddel (@RequestParam(required = false) String error,
-                               Model model) {
+    public String listOddel (@RequestParam(required = false) String error, Model model) {
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
@@ -142,7 +141,7 @@ public class Controller {
         return "master-template";
     }
 
-    @GetMapping("/oddel/add")
+    @GetMapping("/add-oddel")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getAddOddelForm(@RequestParam(required = false) String error, Model model) {
         if(error != null && !error.isEmpty()) {
@@ -163,7 +162,7 @@ public class Controller {
         return "master-template";
     }
 
-    @PostMapping("/oddel/add")
+    @PostMapping("/add-oddel")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addOddel (@RequestParam String naziv,
                             @RequestParam Integer bolnica_id,
@@ -173,14 +172,13 @@ public class Controller {
             this.oddelService.save(naziv, bolnica_id, specijalnost_id);
             return "redirect:/admin/oddel";
         } catch (RuntimeException exception) {
-            return "redirect:/admin/oddel/add?error=" + exception.getMessage();
+            return "redirect:/admin/add-oddel?error=" + exception.getMessage();
         }
     }
 
-// LEKOVI
+    // LEKOVI
     @GetMapping("/lekovi")
-    public String listLekovi (@RequestParam(required = false) String error,
-                             Model model) {
+    public String listLekovi (@RequestParam(required = false) String error, Model model) {
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
@@ -194,7 +192,7 @@ public class Controller {
         return "master-template";
     }
 
-    @GetMapping("/lekovi/add")
+    @GetMapping("/add-lekovi")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getAddLekoviForm(@RequestParam(required = false) String error, Model model) {
         if(error != null && !error.isEmpty()) {
@@ -206,21 +204,21 @@ public class Controller {
         model.addAttribute("lekoviList", lekoviList);
         model.addAttribute("bodyContent", "lekoviList");
         model.addAttribute("bodyContent","addLekovi");
-        model.addAttribute("bodyContent", "addLekovi");
 
         return "master-template";
     }
 
-    @PostMapping("/lekovi/add")
+    @PostMapping("/add-lekovi")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addLekovi (@RequestParam String imeLek,
-                            @RequestParam String generickoIme) {
+                             @RequestParam String generickoIme ) {
 
         try {
             this.lekoviService.save(imeLek, generickoIme);
             return "redirect:/admin/lekovi";
         } catch (RuntimeException exception) {
-            return "redirect:/admin/lekovi/add?error=" + exception.getMessage();
+            return "redirect:/admin/add-lekovi?error=" + exception.getMessage();
         }
     }
 }
+

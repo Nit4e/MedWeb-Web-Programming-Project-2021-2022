@@ -50,7 +50,7 @@
                 <td th:text="${termin.getTermin_id()}"></td>
                 <td th:text="${termin.getVreme()}"></td>
                 <td class="text-left">
-                    <form th:action="@{'/pacient/rezervacija/{termin_id}' (termin_id=${termin.getTermin_id()})}"
+                    <form th:action="@{'/pacient/rezervacija-{termin_id}' (termin_id=${termin.getTermin_id()})}"
                           th:method="POST">
                         <button  type="submit" class="btn btn-sm btn-info"> Закажи </button>
                     </form>

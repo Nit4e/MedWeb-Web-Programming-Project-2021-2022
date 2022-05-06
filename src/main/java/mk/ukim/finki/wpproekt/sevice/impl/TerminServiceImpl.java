@@ -1,7 +1,9 @@
 package mk.ukim.finki.wpproekt.sevice.impl;
 
+import mk.ukim.finki.wpproekt.model.Rezervacija;
 import mk.ukim.finki.wpproekt.model.Termin;
 import mk.ukim.finki.wpproekt.model.TerminId;
+import mk.ukim.finki.wpproekt.repository.RezervacijaRepository;
 import mk.ukim.finki.wpproekt.repository.TerminRepository;
 import mk.ukim.finki.wpproekt.repository.TerminRepositoryCustom;
 import mk.ukim.finki.wpproekt.sevice.TerminService;
@@ -19,10 +21,14 @@ public class TerminServiceImpl implements TerminService {
     private final TerminRepository terminRepository;
     @Qualifier(value = "custom")
     private final TerminRepositoryCustom terminRepositoryCustom;
+    private final RezervacijaRepository rezervacijaRepository;
 
-    public TerminServiceImpl(TerminRepository terminRepository, TerminRepositoryCustom terminRepositoryCustom) {
+    public TerminServiceImpl(TerminRepository terminRepository,
+                             TerminRepositoryCustom terminRepositoryCustom,
+                             RezervacijaRepository rezervacijaRepository) {
         this.terminRepository = terminRepository;
         this.terminRepositoryCustom = terminRepositoryCustom;
+        this.rezervacijaRepository = rezervacijaRepository;
     }
 
     @Override
@@ -51,6 +57,14 @@ public class TerminServiceImpl implements TerminService {
 
     @Override
     public void deleteTermin(Termin termin) {
+
+        List<Rezervacija> rezervacijaList = this.rezervacijaRepository.findAll();
+
+        for (Rezervacija rezervacija : rezervacijaList) {
+            if (rezervacija.getRezervacija_id().equals(termin.getRezervacija().getRezervacija_id())) {
+                this.rezervacijaRepository.delete(rezervacija);
+            }
+        }
 
         this.terminRepository.delete(termin);
     }

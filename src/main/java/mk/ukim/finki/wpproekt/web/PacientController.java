@@ -34,7 +34,7 @@ public class PacientController {
         this.terminService = terminService;
     }
 
-    @GetMapping("/{username}/lekovi")
+    @GetMapping("/{username}-lekovi")
     public String getLekoviPage (@RequestParam(required = false) String error,
                                  @PathVariable String username, Model model) {
         if(error != null && !error.isEmpty()) {
@@ -53,7 +53,7 @@ public class PacientController {
         }
     }
 
-    @GetMapping("/zakazi-termin/{id}")
+    @GetMapping("/zakazi-termin-{id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
     public String zakaziTermin (@PathVariable Integer id, Model model) {
 
@@ -61,7 +61,7 @@ public class PacientController {
             Upat upat = this.upatService.findById(id).get();
             String dijagnoza = upat.getDijagnoza();
             String oddel = upat.getOddel().getNaziv();
-
+//            String a = upat.getRezervacija().getTransakcija().
             List<Korisnik> korisnici = upat.getOddel().getKorisnikList();
             model.addAttribute("upat", upat);
             model.addAttribute("dijagnoza", dijagnoza);
@@ -71,12 +71,11 @@ public class PacientController {
             return "master-template";
         }
         else {
-            return "redirect:/pacient/zakazi-termin/{id}?error=UpatNotFound";
+            return "redirect:/pacient/zakazi-termin-{id}?error=UpatNotFound";
         }
     }
 
-    @GetMapping("/dostapni-termini/{id}")
-    @PreAuthorize("hasRole('ROLE_PACIENT')")
+    @GetMapping("/dostapni-termini-{id}")
     public String getDostapniTerminiPage (@PathVariable Integer id, Model model) {
         Upat upat = (Upat) model.getAttribute("upat");
 
@@ -92,11 +91,11 @@ public class PacientController {
             return "master-template";
         }
         else {
-            return "redirect:/dostapni-termini/{id}?error=UpatNotFound";
+            return "redirect:/dostapni-termini-{id}?error=UpatNotFound";
         }
     }
 
-    @PostMapping("/rezervacija/{termin_id}")
+    @PostMapping("/rezervacija-{termin_id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
     public String rezervacija (@PathVariable Integer termin_id, Model model){
         Upat upat = (Upat) model.getAttribute("upat");
@@ -112,11 +111,11 @@ public class PacientController {
             return "master-template";
         }
         else {
-            return "redirect:/dostapni-termini/{id}?error=TerminNotFound";
+            return "redirect:/dostapni-termini-{id}?error=TerminNotFound";
         }
     }
 
-    @GetMapping("/validiraj/rezervacija/{id}")
+    @GetMapping("/validiraj-rezervacija-{id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
     public String getTransakcijaPage (@PathVariable Integer id, Model model) {
         Upat upat = (Upat) model.getAttribute("upat");
@@ -128,11 +127,11 @@ public class PacientController {
             return "master-template";
         }
         else {
-            return "redirect:/validiraj/rezervacija/{id}?error=RezervacijaNotFound";
+            return "redirect:/validiraj-rezervacija-{id}?error=RezervacijaNotFound";
         }
     }
 
-    @PostMapping("/validiraj/rezervacija/{id}")
+    @PostMapping("/validiraj-rezervacija-{id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
     public String transakcija (@PathVariable Integer id, Model model) {
 
@@ -145,6 +144,7 @@ public class PacientController {
             Integer suma = 50;
             Transakcija transakcija = new Transakcija(suma, smetka_bolnica, rezervacija);
             this.transakcijaService.save(transakcija);
+
             model.addAttribute("rezervacija", rezervacija);
             model.addAttribute("smetka_bolnica", smetka_bolnica);
             model.addAttribute("suma", suma);
@@ -153,7 +153,7 @@ public class PacientController {
             return "master-template";
         }
         else {
-            return "redirect:/validiraj/rezervacija/{id}?error=RezervacijaNotFound";
+            return "redirect:/validiraj-rezervacija-{id}?error=RezervacijaNotFound";
         }
     }
 
@@ -169,6 +169,5 @@ public class PacientController {
         model.addAttribute("transakcii", transakcii);
         model.addAttribute("bodyContent", "prikazi-rezervacii");
         return "master-template";
-
     }
 }

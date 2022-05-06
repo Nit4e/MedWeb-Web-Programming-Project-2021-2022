@@ -30,7 +30,7 @@
                         ? ${upat.getOddel().getNaziv()}  + ' - ' + ${upat.getOddel().getBolnica_id().getNaziv()} : 'Нема оддел'"></td>
                             <td class="text-right">
                                 <th:block sec:authorize="hasRole('ROLE_DOKTOR')">
-                                    <form th:if="${upat.getRezervacija() == null}"
+                                    <form th:if="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)}"
                                           th:action="@{'/upati/delete/{id}' (id=${upat.getUpat_id()})}"
                                           th:method="DELETE">
                                         <button type="submit"
@@ -40,12 +40,12 @@
                                     </form>
                                 </th:block>
                                 <th:block sec:authorize="hasRole('ROLE_DOKTOR')">
-                                    <a th:if="${upat.getRezervacija() == null}"
-                                       th:href="@{'/upati/edit-form/{id}' (id=${upat.getUpat_id})}"
+                                    <a th:if="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)}"
+                                       th:href="@{'/upati/edit-form-{id}' (id=${upat.getUpat_id})}"
                                        class="btn btn-sm btn-info edit-upat">
                                         <i class="fa fa-trash">Edit</i>
                                     </a>
-                                    <i  class="fa fa-trash" th:unless="${upat.getRezervacija() == null}">
+                                    <i  class="fa fa-trash" th:unless="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)}">
                                         За упатот веќе има закажан термин, не може да се брише или ажурира!
                                     </i>
                                 </th:block>
@@ -76,14 +76,16 @@
                                         <td th:text="${upat.getDijagnoza()}"></td>
                                         <td th:text="${upat.getDoktor() != null} ? ${upat.getDoktor()} : 'Нема доктор'"></td>
                                         <td th:text="${upat.getOddel() != null} ? ${upat.getOddel().getNaziv()} + ' - ' + ${upat.getOddel().getBolnica_id().getNaziv()} : 'Нема оддел'"></td>
-                                        <td th:text="${upat.getRezervacija() != null} ? ${upat.getRezervacija().getTermin().getVreme()} : 'Нема закажан термин за упатот'"></td>
-                                        <td class="text-right" th:if="${upat.getRezervacija() == null}">
-                                            <a th:href="@{'/pacient/zakazi-termin/{id}' (id=${upat.getUpat_id()})}"
+                                        <td th:text="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)} ? 'Нема закажан термин за упатот или истиот не е потврден со трансакција' : ${upat.getRezervacija().getTermin().getVreme()}"></td>
+                                        <td class="text-right" th:if="${upat.getRezervacija() == null ||
+                                                                upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null}">
+                                            <a th:href="@{'/pacient/zakazi-termin-{id}' (id=${upat.getUpat_id()})}"
                                                class="btn btn-sm btn-info">
                                                 <i class="fa fa-trash"> Закажи термин </i>
                                             </a>
                                         </td>
-                                        <td class="text-right" th:unless="${upat.getRezervacija() == null}">
+                                        <td class="text-right" th:unless="${upat.getRezervacija() == null ||
+                                                                upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null}">
                                             <i class="fa fa-trash"> - </i>
                                         </td>
                                     </tr>

@@ -2,6 +2,7 @@ package mk.ukim.finki.wpproekt.sevice.impl;
 
 import mk.ukim.finki.wpproekt.model.Korisnik;
 import mk.ukim.finki.wpproekt.model.Oddel;
+import mk.ukim.finki.wpproekt.model.Rezervacija;
 import mk.ukim.finki.wpproekt.model.Upat;
 import mk.ukim.finki.wpproekt.model.exceptions.InvalidArgumentsException;
 import mk.ukim.finki.wpproekt.model.exceptions.KorisnikNotFoundException;
@@ -9,6 +10,7 @@ import mk.ukim.finki.wpproekt.model.exceptions.OddelNotFoundException;
 import mk.ukim.finki.wpproekt.model.exceptions.UpatNotFoundException;
 import mk.ukim.finki.wpproekt.repository.KorisnikRepository;
 import mk.ukim.finki.wpproekt.repository.OddelRepository;
+import mk.ukim.finki.wpproekt.repository.RezervacijaRepository;
 import mk.ukim.finki.wpproekt.repository.UpatRepository;
 import mk.ukim.finki.wpproekt.sevice.UpatService;
 import org.springframework.stereotype.Service;
@@ -25,12 +27,14 @@ public class UpatServiceImpl implements UpatService{
     private final UpatRepository upatRepository;
     private final OddelRepository oddelRepository;
     private final KorisnikRepository korisnikRepository;
+    private final RezervacijaRepository rezervacijaRepository;
 
     public UpatServiceImpl(UpatRepository upatRepository, OddelRepository oddelRepository,
-                           KorisnikRepository korisnikRepository) {
+                           KorisnikRepository korisnikRepository, RezervacijaRepository rezervacijaRepository) {
         this.upatRepository = upatRepository;
         this.oddelRepository = oddelRepository;
         this.korisnikRepository = korisnikRepository;
+        this.rezervacijaRepository = rezervacijaRepository;
     }
 
     @Override
@@ -88,6 +92,13 @@ public class UpatServiceImpl implements UpatService{
 
     @Override
     public void deleteById(Integer upat_id) {
+
+        List<Rezervacija> rezervacijaList = this.rezervacijaRepository.findAll();
+        for (Rezervacija rezervacija : rezervacijaList) {
+            if (rezervacija.getUpat().getUpat_id().equals(upat_id)) {
+                this.rezervacijaRepository.delete(rezervacija);
+            }
+        }
         this.upatRepository.deleteById(upat_id);
     }
 

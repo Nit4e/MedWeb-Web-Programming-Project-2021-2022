@@ -29,6 +29,7 @@
                 </a>
                 <a data-toggle="collapse" data-target="#menu" href="#menu" ><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
             </div>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport"
                     aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,26 +53,26 @@
                         <a class="nav-link" href="gallery.html">Ковид 19</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary ml-lg-3" href="/login">Најави се / Регистрирај се</a>
+                        <a class="btn btn-primary ml-lg-3" href="/login">Најава се / Регистрирај се</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="nav-link active" href="/admin/bolnica/add"> Додади болница </a>
+                        <a class="nav-link active" href="/admin/add-bolnica"> Додади болница </a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="nav-link active" href="/admin/specijalnost/add"> Додади специјалност </a>
+                        <a class="nav-link active" href="/admin/add-spec"> Додади специјалност </a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="nav-link active" href="/admin/oddel/add"> Додади оддел </a>
+                        <a class="nav-link active" href="/admin/add-oddel"> Додади оддел </a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a class="nav-link active" href="/admin/lekovi/add"> Додади лек </a>
+                        <a class="nav-link active" href="/admin/add-lekovi"> Додади лек </a>
                     </li>
 
                     <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
-                        <a class="nav-link active" th:href="@{'/pacient/{username}/lekovi'
+                        <a class="nav-link active" th:href="@{'/pacient/{username}-lekovi'
                                         (username=${#request.getRemoteUser()})}"> Мои лекови </a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
@@ -102,7 +103,7 @@
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_PACIENT')">
                         <a class="btn btn-primary ml-lg-3" href="/shopping-cart">
-                           Cart
+                            Cart
                         </a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">

@@ -38,7 +38,7 @@ public class DoktorController {
         this.upatService = upatService;
     }
 
-// LEKOVI
+    // LEKOVI
     @GetMapping("/prepisi-lek")
     public String getPrepisiLekPage(@RequestParam(required = false) String error, Model model,
                                     HttpServletRequest request) {
@@ -70,7 +70,7 @@ public class DoktorController {
 
     @GetMapping("/prepisani-lekovi")
     public String getPrepisaniLekoviPage(@RequestParam(required = false) String error, Model model,
-                                    HttpServletRequest request) {
+                                         HttpServletRequest request) {
         if(error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
@@ -82,14 +82,13 @@ public class DoktorController {
         return "master-template";
     }
 
-// TERMIN
+    // TERMIN
     @GetMapping("/moi-termini")
     public String getTermini (@RequestParam(required = false) String error, Model model, HttpServletRequest request) {
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
         }
-
         List<Termin> termini = this.terminService.findOnlyFutureAndFree(ZonedDateTime.now());
         List<Korisnik> korisnikList = this.korisnikService.findAll();
         model.addAttribute("termini", termini);

@@ -4,7 +4,7 @@
             <h3> Податоци за трансакција </h3>
         </div>
         <div class="card-body">
-            <form th:action="@{'/pacient/validiraj/rezervacija/{id}' (id = ${rezervacija.getRezervacija_id()})}"
+            <form th:action="@{'/pacient/validiraj-rezervacija-{id}' (id = ${rezervacija.getRezervacija_id()})}"
                   th:method="POST" name="fill">
                 <div class="form-group">
                     <label for="namesurname"> Име и Презиме </label>

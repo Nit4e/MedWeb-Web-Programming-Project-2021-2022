@@ -13,8 +13,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col"> Лек </th>
-                                <th scope="col"> ИД </th>
+                                <th scope="col"> Лек</th>
+                                <th scope="col"> ИД</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,12 +34,13 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col"> Лек ИД </th>
-                                <th scope="col"> Име на лек </th>
+                                <th scope="col"> Лек ИД</th>
+                                <th scope="col"> Име на лек</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="lek : ${prepisaniLekoviList}" th:if="${#request.getRemoteUser() == lek.getKorisnik().getUsername()}">
+                            <tr th:each="lek : ${prepisaniLekoviList}"
+                                th:if="${#request.getRemoteUser() == lek.getKorisnik().getUsername()}">
                                 <td th:text="${lek.getLekovi().getLek_id()}"></td>
                                 <td th:text="${lek.getLekovi().getIme_lek()}"></td>
                             </tr>
@@ -55,13 +56,14 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col"> Лек ИД </th>
-                                <th scope="col"> Име на лек </th>
-                                <th scope="col">  </th>
+                                <th scope="col"> Лек ИД</th>
+                                <th scope="col"> Име на лек</th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr style="display: none" th:each="lek : ${prepisaniLekovi}" th:if="${#request.getRemoteUser() == lek.getPacient_username()}">
+                            <tr style="display: none" th:each="lek : ${prepisaniLekovi}"
+                                th:if="${#request.getRemoteUser() == lek.getPacient_username()}">
                                 <td th:text="${lek.getLek_id()}"></td>
                                 <td th:text="${lek.getLekovi().getIme_lek()}"></td>
                                 <td class="text-right">
@@ -76,7 +78,8 @@
                                 </td>
                             </tr>
 
-                            <tr th:each="lek : ${prepisaniLekovi}" th:if="${#request.getRemoteUser() == lek.getPacient_username()}">
+                            <tr th:each="lek : ${prepisaniLekovi}"
+                                th:if="${#request.getRemoteUser() == lek.getPacient_username()}">
                                 <td th:text="${lek.getLek_id()}"></td>
                                 <td th:text="${lek.getLekovi().getIme_lek()}"></td>
                                 <td class="text-right">
@@ -89,6 +92,7 @@
                                         </button>
                                     </form>
                                 </td>
+
                             </tr>
                             </tbody>
                         </table>

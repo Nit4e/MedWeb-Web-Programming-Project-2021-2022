@@ -61,7 +61,7 @@ public class UpatController {
         return "master-template";
     }
 
-    @GetMapping("/edit-form/{id}")
+    @GetMapping("/edit-form-{id}")
     @PreAuthorize("hasRole('ROLE_DOKTOR')")
     public String editUpatPage(@PathVariable Integer id, Model model, HttpServletRequest request) {
         if (this.upatService.findById(id).isPresent()) {
@@ -94,5 +94,4 @@ public class UpatController {
         }
         return "redirect:/upati";
     }
-
 }
