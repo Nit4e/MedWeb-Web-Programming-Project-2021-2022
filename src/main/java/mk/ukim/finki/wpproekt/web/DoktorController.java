@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,16 +28,19 @@ public class DoktorController {
     private final TerminService terminService;
     private final OddelService oddelService;
     private final UpatService upatService;
+    private final RezervacijaService rezervacijaService;
 
     public DoktorController(LekoviService lekoviService, KorisnikService korisnikService,
                             PrepisaniLekoviService prepisaniLekoviService, TerminService terminService,
-                            OddelService oddelService, UpatService upatService) {
+                            OddelService oddelService, UpatService upatService,
+                            RezervacijaService rezervacijaService) {
         this.lekoviService = lekoviService;
         this.korisnikService = korisnikService;
         this.prepisaniLekoviService = prepisaniLekoviService;
         this.terminService = terminService;
         this.oddelService = oddelService;
         this.upatService = upatService;
+        this.rezervacijaService = rezervacijaService;
     }
 
     // LEKOVI
@@ -133,5 +138,48 @@ public class DoktorController {
         } catch (RuntimeException exception) {
             return "redirect:/moi-termini?error=" + exception.getMessage();
         }
+    }
+
+    @GetMapping("/{username}-kalendar")
+    public String getKalendarPage (@RequestParam(required = false) String error,
+                                   @PathVariable String username, Model model, HttpServletRequest request) {
+        if(error != null && !error.isEmpty()) {
+            model.addAttribute("hasError", true);
+            model.addAttribute("error", error);
+        }
+
+        Korisnik korisnik = this.korisnikService.findByUsername(request.getRemoteUser()).get();;
+        List<Rezervacija> validReservations = this.rezervacijaService
+                .findAllValidReservationsForDoktor(korisnik.getCovek_id());
+        List<LocalDate> localDates = new ArrayList<>();
+        List<String> year = new ArrayList<>();
+        List<String> month = new ArrayList<>();
+        List<String> day = new ArrayList<>();
+        List<Integer> hours = new ArrayList<>();
+        List<Integer> minutes = new ArrayList<>();
+        for (Rezervacija rezervacija : validReservations) {
+            LocalDate localDate = rezervacija.getTermin().getVreme().toLocalDate();
+            localDate = localDate.minusMonths(1);
+            Integer hour = rezervacija.getTermin().getVreme().getHour();
+            localDates.add(localDate);
+            year.add(String.valueOf(localDate.getYear()));
+            month.add(String.valueOf(localDate.getMonthValue()));
+            day.add(String.valueOf(localDate.getDayOfMonth()));
+            hours.add(hour);
+            minutes.add(rezervacija.getTermin().getVreme().getMinute());
+        }
+        model.addAttribute("year", year);
+        model.addAttribute("bodyContent", "year");
+        model.addAttribute("month", month);
+        model.addAttribute("bodyContent", "month");
+        model.addAttribute("day", day);
+        model.addAttribute("bodyContent", "day");
+        model.addAttribute("hours", hours);
+        model.addAttribute("bodyContent", "hours");
+        model.addAttribute("minutes", minutes);
+        model.addAttribute("bodyContent", "minutes");
+        model.addAttribute("bodyContent", "event-calendar");
+        return "master-template";
+
     }
 }

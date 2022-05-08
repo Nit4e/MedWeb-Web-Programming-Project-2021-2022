@@ -11,13 +11,18 @@
                 <th:block th:if="${#request.getRemoteUser() != null}"
                           th:text="${#request.getRemoteUser()}"></th:block></h1>
             <a th:href="@{'/doktor/vnesi-termin'}" class="btn btn-primary">Внеси нов термин</a>
+            <a th:href="@{'/doktor/{username}-kalendar' (username=${#request.getRemoteUser()})}"
+               class="btn btn-primary"> Календар </a>
         </div>
         <div class="container text-center wow zoomIn" sec:authorize="hasRole('ROLE_PACIENT')">
             <span class="subhead">Најавен пациент:</span>
             <h1 class="display-4">
                 <th:block th:if="${#request.getRemoteUser() != null}"
                           th:text="${#request.getRemoteUser()}"></th:block></h1>
+            <a th:href="@{'/pacient/{username}-kalendar' (username=${#request.getRemoteUser()})}"
+               class="btn btn-primary"> Календар </a>
         </div>
+
         <div class="container text-center wow zoomIn" sec:authorize="hasRole('ROLE_ADMIN')">
             <span class="subhead">Најавен админ:</span>
             <h1 class="display-4">

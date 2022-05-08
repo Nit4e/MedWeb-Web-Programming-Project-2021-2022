@@ -45,6 +45,9 @@ public class Korisnik implements UserDetails {
     @OneToMany(mappedBy = "korisnik")
     private List<PrepisaniLekovi> prepisaniLekovi;
 
+    @OneToMany(mappedBy = "korisnik")
+    private List<Upat> upatList;
+
     public Korisnik() {
     }
 
@@ -59,16 +62,6 @@ public class Korisnik implements UserDetails {
         this.specijalnost = specijalnost;
         this.oddel = oddel;
     }
-
-
-//    public List<PrepisaniLekovi> getPrepisaniLekovi() {
-//        return prepisaniLekovi;
-//    }
-//
-//    public void setPrepisaniLekovi(List<PrepisaniLekovi> prepisaniLekovi) {
-//        this.prepisaniLekovi = prepisaniLekovi;
-//        this.covek_id = getCovek_id();
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
