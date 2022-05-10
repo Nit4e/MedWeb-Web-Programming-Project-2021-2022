@@ -25,8 +25,6 @@ public class ShoppingCart {
     @ManyToMany
     private List<Lekovi> lekoviList;
 
-//    @ManyToMany
-//    private List<PrepisaniLekovi> prepisaniLekoviList;
 
     @Enumerated(EnumType.STRING)
     private ShoppingCartStatus status;

@@ -13,7 +13,9 @@ public interface TerminService {
     Termin findOneTerminByTerminId (Long termin_id);
     void save (Termin termin);
     void deleteTermin (Termin termin);
+    void deleteTerminWithInvalidReservation (Termin termin);
     List<Termin> findAll();
+    List<Termin> findOnlyFutureFree (ZonedDateTime now);
     List<Termin> findOnlyFutureAndFree (ZonedDateTime now);
     List<Termin> findOnlyFutureAndFreeAndByDoktor (ZonedDateTime now, Long doktor_id);
 }

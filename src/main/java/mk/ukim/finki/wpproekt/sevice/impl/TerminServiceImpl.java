@@ -58,6 +58,11 @@ public class TerminServiceImpl implements TerminService {
     @Override
     public void deleteTermin(Termin termin) {
 
+        this.terminRepository.delete(termin);
+    }
+
+    @Override
+    public void deleteTerminWithInvalidReservation(Termin termin) {
         List<Rezervacija> rezervacijaList = this.rezervacijaRepository.findAll();
 
         for (Rezervacija rezervacija : rezervacijaList) {
@@ -65,13 +70,17 @@ public class TerminServiceImpl implements TerminService {
                 this.rezervacijaRepository.delete(rezervacija);
             }
         }
-
         this.terminRepository.delete(termin);
     }
 
     @Override
     public List<Termin> findAll() {
         return this.terminRepository.findAll();
+    }
+
+    @Override
+    public List<Termin> findOnlyFutureFree(ZonedDateTime now) {
+        return this.terminRepository.findFutureFree(now);
     }
 
     @Override

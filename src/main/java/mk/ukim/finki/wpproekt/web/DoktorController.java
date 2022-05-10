@@ -128,15 +128,29 @@ public class DoktorController {
         return "redirect:/doktor/moi-termini";
     }
 
-    @GetMapping("/termin/{id}/delete")
+    @GetMapping("/termin-{id}-delete")
+    @PreAuthorize("hasRole('ROLE_DOKTOR')")
     @Transactional
     public String delete(@PathVariable Long id) {
         try {
+            int flag = 0;
             Termin termin = this.terminService.findOneTerminByTerminId(id);
-            this.terminService.deleteTermin(termin);
+            List<Termin> terminList = this.terminService.findOnlyFutureFree(ZonedDateTime.now());
+            for (Termin t : terminList) {
+                if (termin.getTermin_id().equals(t.getTermin_id())){
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1) {
+                this.terminService.deleteTermin(termin);
+            }
+            else {
+                this.terminService.deleteTerminWithInvalidReservation(termin);
+            }
             return "redirect:/doktor/moi-termini";
         } catch (RuntimeException exception) {
-            return "redirect:/moi-termini?error=" + exception.getMessage();
+            return "redirect:/doktor/moi-termini?error=" + exception.getMessage();
         }
     }
 

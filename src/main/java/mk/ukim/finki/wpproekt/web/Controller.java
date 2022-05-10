@@ -112,7 +112,7 @@ public class Controller {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addBolnica (@RequestParam String naziv,
                               @RequestParam String grad,
-                              @RequestParam Long broj,
+                              @RequestParam Integer broj,
                               @RequestParam String ulica,
                               @RequestParam String smetka_bolnica) {
 
