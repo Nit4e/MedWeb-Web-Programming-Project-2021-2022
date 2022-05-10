@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SpecijalnostRepository extends JpaRepository<Specijalnost, Integer> {
+public interface SpecijalnostRepository extends JpaRepository<Specijalnost, Long> {
 
 
 }

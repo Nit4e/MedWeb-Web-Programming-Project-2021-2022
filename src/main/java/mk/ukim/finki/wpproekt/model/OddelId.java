@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class OddelId implements Serializable {
-    private Integer bolnica_id;
-    private Integer oddel_id;
+    private Long bolnica_id;
+    private Long oddel_id;
 
     public OddelId() {
     }

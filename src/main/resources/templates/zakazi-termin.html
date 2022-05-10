@@ -52,8 +52,8 @@
                     <td th:text="${korisnik.getIme()}"></td>
                     <td th:text="${korisnik.getPrezime()}"></td>
                     <td class="text-left">
-                        <a th:href="@{'/pacient/dostapni-termini-{id}' (id=${korisnik.getCovek_id()})}" class="btn btn-sm btn-info">
-                            <i class="fa fa-trash"> Прегледај термини </i>
+                        <a th:href="@{'/pacient/dostapni-termini-{id}' (id=${korisnik.getCovek_id()})}">
+                            <i class="btn btn-primary"> Прегледај термини </i>
                         </a>
                     </td>
                 </tr>

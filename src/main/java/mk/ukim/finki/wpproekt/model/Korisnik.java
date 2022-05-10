@@ -17,7 +17,7 @@ import java.util.List;
 public class Korisnik implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer covek_id;
+    private Long covek_id;
     private String username;
     private String password;
     @Column(columnDefinition = "bpchar(13)")

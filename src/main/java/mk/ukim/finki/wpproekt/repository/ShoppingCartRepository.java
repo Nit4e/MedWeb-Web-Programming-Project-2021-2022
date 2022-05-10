@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> {
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
 
     Optional<ShoppingCart> findByKorisnikAndStatus (Korisnik korisnik, ShoppingCartStatus status);
 }

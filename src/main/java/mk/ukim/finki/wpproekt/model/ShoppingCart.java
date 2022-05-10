@@ -15,7 +15,7 @@ public class ShoppingCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private LocalDateTime dateCreated;
 

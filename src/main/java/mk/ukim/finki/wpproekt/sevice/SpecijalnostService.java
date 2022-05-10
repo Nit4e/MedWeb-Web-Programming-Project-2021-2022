@@ -9,5 +9,5 @@ public interface SpecijalnostService {
 
     void save (Specijalnost specijalnost);
     List<Specijalnost> findAll();
-    Optional<Specijalnost> findById(Integer id);
+    Optional<Specijalnost> findById(Long id);
 }

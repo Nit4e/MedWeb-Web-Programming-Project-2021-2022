@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface KorisnikRepository extends JpaRepository<Korisnik, Integer> {
+public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
     Optional<Korisnik> findByUsernameAndPassword(String username, String password);
     Optional<Korisnik> findByUsername(String username);
     @Query("select k from Korisnik k where k.role <> 'ROLE_ADMIN' and k.username not like :doktor_username")

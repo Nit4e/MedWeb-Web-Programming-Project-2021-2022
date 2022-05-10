@@ -13,9 +13,9 @@ import javax.persistence.*;
 public class PrepisaniLekovi {
 
     @Id
-    private Integer covek_id;
+    private Long covek_id;
     @Id
-    private Integer lek_id;
+    private Long lek_id;
     @Id
     private String pacient_username;
 

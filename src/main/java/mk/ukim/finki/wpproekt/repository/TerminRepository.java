@@ -18,6 +18,6 @@ public interface TerminRepository extends JpaRepository<Termin, TerminId>, Termi
     List<Termin> findFutureAndFree (ZonedDateTime now);
 
     @Query("select t from Termin t left join Rezervacija r on t.termin_id = r.termin.termin_id left join Transakcija tr on r.rezervacija_id = tr.rezervacija.rezervacija_id where (t.vreme > :now and t.covek_id = :doktor_id) and ((t.vreme > :now and r.termin is not null and tr.rezervacija is null) or (t.vreme > :now and r.termin is null))")
-    List<Termin> findFutureAndFreeAndByDoktor (ZonedDateTime now, Integer doktor_id);
+    List<Termin> findFutureAndFreeAndByDoktor (ZonedDateTime now, Long doktor_id);
 
 }

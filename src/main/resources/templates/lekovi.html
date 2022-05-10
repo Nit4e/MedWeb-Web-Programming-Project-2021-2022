@@ -13,8 +13,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col"> Лек</th>
-                                <th scope="col"> ИД</th>
+                                <th scope="col"> Лек </th>
+                                <th scope="col"> ИД </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,8 +34,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col"> Лек ИД</th>
-                                <th scope="col"> Име на лек</th>
+                                <th scope="col"> Лек ИД </th>
+                                <th scope="col"> Име на лек </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -70,9 +70,8 @@
                                     <form th:action="@{'/shopping-cart/add-lek/{id}' (id=${lek.getLek_id()})}"
                                           th:method="POST"
                                           sec:authorize="isAuthenticated()">
-                                        <button type="submit"
-                                                class="btn btn-sm btn-primary cart-product">
-                                            <i class="fa fa-trash"> Add to cart </i>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="btn btn-primary"> Додади во кошничка </i>
                                         </button>
                                     </form>
                                 </td>
@@ -86,9 +85,8 @@
                                     <form th:action="@{'/shopping-cart/add-lek/{id}' (id=${lek.getLek_id()})}"
                                           th:method="POST"
                                           sec:authorize="isAuthenticated()">
-                                        <button type="submit"
-                                                class="btn btn-sm btn-primary cart-product">
-                                            <i class="fa fa-trash"> Add to cart </i>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="btn btn-primary"> Додади во кошничка </i>
                                         </button>
                                     </form>
                                 </td>

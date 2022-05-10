@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Rezervacija {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer rezervacija_id;
+    private Long rezervacija_id;
 
     @OneToOne
     @JoinColumn(name = "upat_id", referencedColumnName = "upat_id")

@@ -10,5 +10,5 @@ public interface BolnicaService {
 
     void save (Bolnica bolnica);
     List<Bolnica> findAll();
-    Optional<Bolnica> findById(Integer id);
+    Optional<Bolnica> findById(Long id);
 }

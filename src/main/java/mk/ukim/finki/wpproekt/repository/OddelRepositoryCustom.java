@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface OddelRepositoryCustom {
 
-    Optional <Oddel> findByOddelId (Integer oddel_id);
+    Optional <Oddel> findByOddelId (Long oddel_id);
     //Optional <Oddel> findByBolnicaIdAndOddelName (Bolnica bolnica_id, String naziv);
 }

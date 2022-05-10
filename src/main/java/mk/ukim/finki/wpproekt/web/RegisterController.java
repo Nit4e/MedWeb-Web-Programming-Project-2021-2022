@@ -61,8 +61,8 @@ public class RegisterController {
                            @RequestParam String ime,
                            @RequestParam String prezime,
                            @RequestParam Role role,
-                           @RequestParam (required = false)Integer specijalnostId,
-                           @RequestParam (required = false)Integer oddelId,
+                           @RequestParam (required = false)Long specijalnostId,
+                           @RequestParam (required = false)Long oddelId,
                            @RequestParam (required = false)String telefonski_broj) {
 
         try {
@@ -70,7 +70,7 @@ public class RegisterController {
                     specijalnostId, oddelId);
             if (!telefonski_broj.isEmpty() || !telefonski_broj.equals("") || !(telefonski_broj == null)) {
                 TelefonskiBroevi telefonskiBroevi = new TelefonskiBroevi();
-                Integer covek_broj_id = this.korisnikService.findByUsername(username).get().getCovek_id();
+                Long covek_broj_id = this.korisnikService.findByUsername(username).get().getCovek_id();
                 telefonskiBroevi.setCovek_broj_id(covek_broj_id);
                 telefonskiBroevi.setTelefonski_broj(telefonski_broj);
                 this.telefonskiBroeviService.save(telefonskiBroevi);

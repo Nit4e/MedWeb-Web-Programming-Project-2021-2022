@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Specijalnost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer spec_id;
+    private Long spec_id;
     private String naziv;
 
     public Specijalnost() {

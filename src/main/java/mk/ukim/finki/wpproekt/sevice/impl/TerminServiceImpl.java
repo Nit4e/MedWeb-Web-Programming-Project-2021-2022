@@ -38,13 +38,13 @@ public class TerminServiceImpl implements TerminService {
     }
 
     @Override
-    public List<Termin> findTerminByTermin_id(Integer termin_id) {
+    public List<Termin> findTerminByTermin_id(Long termin_id) {
 
         return this.terminRepositoryCustom.findAllByTerminId(termin_id);
     }
 
     @Override
-    public Termin findOneTerminByTerminId(Integer termin_id) {
+    public Termin findOneTerminByTerminId(Long termin_id) {
 
         return this.terminRepositoryCustom.findByTerminId(termin_id);
     }
@@ -80,7 +80,7 @@ public class TerminServiceImpl implements TerminService {
     }
 
     @Override
-    public List<Termin> findOnlyFutureAndFreeAndByDoktor(ZonedDateTime now, Integer doktor_id) {
+    public List<Termin> findOnlyFutureAndFreeAndByDoktor(ZonedDateTime now, Long doktor_id) {
         return this.terminRepository.findFutureAndFreeAndByDoktor(now, doktor_id);
     }
 }

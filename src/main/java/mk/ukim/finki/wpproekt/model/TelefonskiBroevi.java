@@ -12,7 +12,7 @@ import javax.persistence.IdClass;
 @IdClass(TelefonskiBroeviId.class)
 public class TelefonskiBroevi {
     @Id
-    private Integer covek_broj_id;
+    private Long covek_broj_id;
 
     @Id
     private String telefonski_broj;

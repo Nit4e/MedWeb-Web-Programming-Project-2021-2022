@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class TelefonskiBroeviId implements Serializable {
-    private Integer covek_broj_id;
+    private Long covek_broj_id;
     private String telefonski_broj;
 
     public TelefonskiBroeviId() {

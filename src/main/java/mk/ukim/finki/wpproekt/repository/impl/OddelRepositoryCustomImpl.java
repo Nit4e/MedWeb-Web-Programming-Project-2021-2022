@@ -21,7 +21,7 @@ public class OddelRepositoryCustomImpl implements OddelRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public Optional<Oddel> findByOddelId(Integer oddel_id) {
+    public Optional<Oddel> findByOddelId(Long oddel_id) {
         return Optional.ofNullable(entityManager.createQuery("select o from Oddel o where o.oddel_id = :oddel_id",
                 Oddel.class).setParameter("oddel_id", oddel_id).setMaxResults(1).getSingleResult());
     }

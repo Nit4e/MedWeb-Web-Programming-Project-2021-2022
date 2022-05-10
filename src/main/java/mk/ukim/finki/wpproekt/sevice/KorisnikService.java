@@ -11,13 +11,13 @@ import java.util.Optional;
 public interface KorisnikService extends UserDetailsService {
 
     Korisnik register (String username, String password, String repeatPassword, String embg,
-                       String ime, String prezime, Role role, Integer specijalnostId, Integer oddelId);
+                       String ime, String prezime, Role role, Long specijalnostId, Long oddelId);
 
     Optional<Korisnik> findByUsername (String username);
 
     List<Korisnik> findAll();
 
-    Optional<Korisnik> findById (Integer id);
+    Optional<Korisnik> findById (Long id);
 
     List<Korisnik> findByNotLoggedInUsernameAndRoleNotAdmin(String doktor_username);
 }

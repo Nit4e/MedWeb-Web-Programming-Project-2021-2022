@@ -38,7 +38,7 @@ public class BolnicaServiceImpl implements BolnicaService {
     }
 
     @Override
-    public Optional<Bolnica> findById(Integer id) {
+    public Optional<Bolnica> findById(Long id) {
 
         return this.bolnicaRepository.findById(id);
     }

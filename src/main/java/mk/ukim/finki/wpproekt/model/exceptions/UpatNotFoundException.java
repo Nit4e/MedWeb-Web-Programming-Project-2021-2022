@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class UpatNotFoundException extends RuntimeException {
-    public UpatNotFoundException(Integer id) {
+    public UpatNotFoundException(Long id) {
         super(String.format("Referral with id: %d was not found", id));
     }
 }

@@ -13,9 +13,9 @@ import java.util.Objects;
 public class PrepisaniLekoviId implements Serializable {
 
     //@Column(name = "covek_id")
-    private Integer covek_id;
+    private Long covek_id;
     //@Column(name = "lek_id")
-    private Integer lek_id;
+    private Long lek_id;
     private String pacient_username;
 
 

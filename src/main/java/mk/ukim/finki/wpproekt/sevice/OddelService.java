@@ -11,6 +11,6 @@ public interface OddelService {
     void save (Oddel oddel);
     List<Oddel> findAll();
     Optional<Oddel> findById(OddelId id);
-    Optional<Oddel> findByOddelId(Integer oddel_id);
-    Oddel save (String naziv, Integer bolnica_id, Integer specijalnost_id);
+    Optional<Oddel> findByOddelId(Long oddel_id);
+    Oddel save (String naziv, Long bolnica_id, Long specijalnost_id);
 }

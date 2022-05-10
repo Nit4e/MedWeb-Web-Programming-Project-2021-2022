@@ -18,10 +18,10 @@ public class Termin implements Serializable {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "termin_id", insertable = false, updatable = false)
-    private Integer termin_id;
+    private Long termin_id;
 
     @Id
-    private Integer covek_id;
+    private Long covek_id;
 
     @Id
     @ManyToOne

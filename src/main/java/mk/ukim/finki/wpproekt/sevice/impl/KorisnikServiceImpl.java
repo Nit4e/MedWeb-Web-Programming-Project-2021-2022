@@ -45,8 +45,8 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     @Override
     public Korisnik register(String username, String password, String repeatPassword,
-                             String embg, String ime, String prezime, Role role, Integer specijalnostId,
-                             Integer oddelId) {
+                             String embg, String ime, String prezime, Role role, Long specijalnostId,
+                             Long oddelId) {
         if (username==null || username.isEmpty()  || password==null || password.isEmpty())
             throw new InvalidUsernameOrPasswordException();
         if (!password.equals(repeatPassword))
@@ -85,7 +85,7 @@ public class KorisnikServiceImpl implements KorisnikService {
     }
 
     @Override
-    public Optional<Korisnik> findById(Integer id) {
+    public Optional<Korisnik> findById(Long id) {
         return this.korisnikRepository.findById(id);
     }
 

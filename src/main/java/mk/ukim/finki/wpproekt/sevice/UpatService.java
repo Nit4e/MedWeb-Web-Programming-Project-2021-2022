@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UpatService {
-    Optional<Upat> findById (Integer id);
+    Optional<Upat> findById (Long id);
     List<Upat> findAll();
     List<Upat> findAllWithoutReservation();
-    Optional<Upat> selectedUpat (Integer upat_id);
-    Optional<Upat> save(String dijagnoza, Integer korisnikId, Integer oddelId, String doktor);
-    void deleteById(Integer upat_id);
-    Optional<Upat> edit(Integer upat_id, String dijagnoza, Integer korisnikId, Integer oddelId, String doktor);
+    Optional<Upat> selectedUpat (Long upat_id);
+    Optional<Upat> save(String dijagnoza, Long korisnikId, Long oddelId, String doktor);
+    void deleteById(Long upat_id);
+    Optional<Upat> edit(Long upat_id, String dijagnoza, Long korisnikId, Long oddelId, String doktor);
 }

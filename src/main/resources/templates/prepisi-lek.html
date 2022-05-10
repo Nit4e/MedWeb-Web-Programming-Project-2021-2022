@@ -5,6 +5,7 @@
     <form class="form-signin mt-xl-5" method="post" action="/doktor/prepisi-lek">
         <h2 class="form-signin-heading"> Препиши лек </h2>
         <div class="hide" >
+            <h6 class="mt-3"> Доктор </h6>
             <label for="doktorId" class="sr-only"> Доктор </label>
             <select id="doktorId" name="doktorId" class="form-control">
                 <option th:value="${#request.getRemoteUser()}"
@@ -13,6 +14,7 @@
             </select>
         </div>
         <div class="hide" id="hide-div1">
+            <h6 class="mt-3"> Избери лек </h6>
             <label for="lekId" class="sr-only"> Листа на лекови </label>
             <select id="lekId" name="lekId" class="form-control">
                 <option th:if="${lekoviList.size() > 0}"
@@ -23,6 +25,7 @@
             </select>
         </div>
         <div class="hide" id="hide-div2">
+            <h6 class="mt-3"> Избери пациент </h6>
             <label for="pacientId" class="sr-only"> Листа на пациенти </label>
             <select id="pacientId" name="pacientId" class="form-control">
                 <option th:if="${korisnikList.size() > 0}"

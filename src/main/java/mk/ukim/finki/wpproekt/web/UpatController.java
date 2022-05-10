@@ -42,7 +42,7 @@ public class UpatController {
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_DOKTOR')")
-    public String deleteUpat(@PathVariable Integer id) {
+    public String deleteUpat(@PathVariable Long id) {
         this.upatService.deleteById(id);
         return "redirect:/upati";
     }
@@ -63,7 +63,7 @@ public class UpatController {
 
     @GetMapping("/edit-form-{id}")
     @PreAuthorize("hasRole('ROLE_DOKTOR')")
-    public String editUpatPage(@PathVariable Integer id, Model model, HttpServletRequest request) {
+    public String editUpatPage(@PathVariable Long id, Model model, HttpServletRequest request) {
         if (this.upatService.findById(id).isPresent()) {
             Upat upat = this.upatService.findById(id).get();
             Korisnik korisnik = this.korisnikService.findByUsername(request.getRemoteUser()).get();
@@ -82,10 +82,10 @@ public class UpatController {
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_DOKTOR')")
-    public String saveUpat(@RequestParam (required = false) Integer id,
+    public String saveUpat(@RequestParam (required = false) Long id,
                            @RequestParam String dijagnoza,
-                           @RequestParam Integer korisnik,
-                           @RequestParam Integer oddel,
+                           @RequestParam Long korisnik,
+                           @RequestParam Long oddel,
                            @RequestParam String doktor) {
         if (id != null) {
             this.upatService.edit(id, dijagnoza, korisnik, oddel, doktor);

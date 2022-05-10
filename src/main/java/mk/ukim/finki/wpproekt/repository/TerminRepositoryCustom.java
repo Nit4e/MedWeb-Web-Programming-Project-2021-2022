@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TerminRepositoryCustom {
-    List<Termin> findAllByTerminId (Integer termin_id);
-    Termin findByTerminId (Integer termin_id);
-    void deleteByTerminId (Integer termin_id);
+    List<Termin> findAllByTerminId (Long termin_id);
+    Termin findByTerminId (Long termin_id);
+    void deleteByTerminId (Long termin_id);
 }

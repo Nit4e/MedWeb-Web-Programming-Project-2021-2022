@@ -112,7 +112,7 @@ public class Controller {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addBolnica (@RequestParam String naziv,
                               @RequestParam String grad,
-                              @RequestParam Integer broj,
+                              @RequestParam Long broj,
                               @RequestParam String ulica,
                               @RequestParam String smetka_bolnica) {
 
@@ -165,8 +165,8 @@ public class Controller {
     @PostMapping("/add-oddel")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addOddel (@RequestParam String naziv,
-                            @RequestParam Integer bolnica_id,
-                            @RequestParam Integer specijalnost_id) {
+                            @RequestParam Long bolnica_id,
+                            @RequestParam Long specijalnost_id) {
 
         try {
             this.oddelService.save(naziv, bolnica_id, specijalnost_id);

@@ -55,12 +55,12 @@ public class OddelServiceImpl implements OddelService {
     }
 
     @Override
-    public Optional<Oddel> findByOddelId(Integer oddel_id) {
+    public Optional<Oddel> findByOddelId(Long oddel_id) {
         return this.oddelRepositoryCustom.findByOddelId(oddel_id);
     }
 
     @Override
-    public Oddel save(String naziv, Integer bolnica_id, Integer specijalnost_id) {
+    public Oddel save(String naziv, Long bolnica_id, Long specijalnost_id) {
         Bolnica bolnica = this.bolnicaRepository.findById(bolnica_id).get();
         Specijalnost specijalnost = this.specijalnostRepository.findById(specijalnost_id).get();
 

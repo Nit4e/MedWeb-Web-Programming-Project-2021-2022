@@ -11,7 +11,7 @@ import java.util.List;
 public class Lekovi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer lek_id;
+    private Long lek_id;
     private String ime_lek;
     private String genericko_ime;
 

@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RezervacijaRepository extends JpaRepository<Rezervacija, Integer> {
+public interface RezervacijaRepository extends JpaRepository<Rezervacija, Long> {
 
-    @Query("select r from Rezervacija r left join Upat u on r.upat.upat_id = u.upat_id where r.transakcija is not null and u.korisnik.covek_id = :pacient_id")
-    List<Rezervacija> listValidReservations(Integer pacient_id);
+    @Query("select r from Rezervacija r left join Upat u on r.upat.upat_id = u.upat_id left join Transakcija t on r.rezervacija_id = t.rezervacija.rezervacija_id where t.rezervacija is not null and u.korisnik.covek_id = :pacient_id")
+    List<Rezervacija> listValidReservations(Long pacient_id);
 
     @Query("select r from Rezervacija r left join Transakcija t on r.rezervacija_id = t.rezervacija.rezervacija_id where t.rezervacija is not null and r.termin.korisnik.covek_id = :doktor_id")
-    List<Rezervacija> listValidReservationsForDoktor(Integer doktor_id);
+    List<Rezervacija> listValidReservationsForDoktor(Long doktor_id);
 }

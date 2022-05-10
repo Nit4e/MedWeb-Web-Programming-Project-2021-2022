@@ -9,7 +9,7 @@ public interface LekoviService {
 
     List<Lekovi> listAll();
 
-    Optional<Lekovi> findById(Integer lekId);
+    Optional<Lekovi> findById(Long lekId);
 
     Lekovi save(String generickoIme, String imeLek);
 }

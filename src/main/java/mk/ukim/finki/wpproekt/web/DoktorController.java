@@ -66,7 +66,7 @@ public class DoktorController {
     @PostMapping("/prepisi-lek")
     @PreAuthorize("hasRole('ROLE_DOKTOR')")
     public String prepisiLek(@RequestParam String doktorId,
-                             @RequestParam Integer lekId,
+                             @RequestParam Long lekId,
                              @RequestParam String pacientId) {
 
         this.prepisaniLekoviService.save(doktorId, lekId, pacientId);
@@ -130,7 +130,7 @@ public class DoktorController {
 
     @GetMapping("/termin/{id}/delete")
     @Transactional
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable Long id) {
         try {
             Termin termin = this.terminService.findOneTerminByTerminId(id);
             this.terminService.deleteTermin(termin);

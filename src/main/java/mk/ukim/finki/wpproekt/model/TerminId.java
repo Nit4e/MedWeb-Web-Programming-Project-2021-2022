@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class TerminId implements Serializable {
-    private Integer covek_id;
-    private Integer termin_id;
+    private Long covek_id;
+    private Long termin_id;
 
     public TerminId() {
     }
 
-    public TerminId(Integer covek_id, Integer termin_id) {
+    public TerminId(Long covek_id, Long termin_id) {
     }
 
     @Override

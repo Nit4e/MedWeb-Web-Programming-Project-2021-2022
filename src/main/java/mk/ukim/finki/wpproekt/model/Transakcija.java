@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Transakcija {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tran_id;
+    private Long tran_id;
     private Integer suma;
     private String smetka_bolnica;
 

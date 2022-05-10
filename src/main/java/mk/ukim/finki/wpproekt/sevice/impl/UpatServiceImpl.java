@@ -38,7 +38,7 @@ public class UpatServiceImpl implements UpatService{
     }
 
     @Override
-    public Optional<Upat> findById(Integer id) {
+    public Optional<Upat> findById(Long id) {
         return this.upatRepository.findById(id);
     }
 
@@ -53,7 +53,7 @@ public class UpatServiceImpl implements UpatService{
     }
 
     @Override
-    public Optional<Upat> selectedUpat(Integer upat_id) {
+    public Optional<Upat> selectedUpat(Long upat_id) {
         if (upat_id == null) {
             throw new InvalidArgumentsException();
         }
@@ -62,7 +62,7 @@ public class UpatServiceImpl implements UpatService{
 
     @Override
     @Transactional
-    public Optional<Upat> edit(Integer upat_id, String dijagnoza, Integer korisnikId, Integer oddelId,  String doktor) {
+    public Optional<Upat> edit(Long upat_id, String dijagnoza, Long korisnikId, Long oddelId,  String doktor) {
         Upat upat = this.upatRepository.findById(upat_id).orElseThrow(()
                 -> new UpatNotFoundException(upat_id));
 
@@ -82,7 +82,7 @@ public class UpatServiceImpl implements UpatService{
     }
 
     @Override
-    public Optional<Upat> save(String dijagnoza, Integer korisnikId, Integer oddelId, String doktor) {
+    public Optional<Upat> save(String dijagnoza, Long korisnikId, Long oddelId, String doktor) {
         Oddel oddel = this.oddelRepository.findByOddelId(oddelId)
                 .orElseThrow(() -> new OddelNotFoundException(oddelId));
         Korisnik korisnik = this.korisnikRepository.findById(korisnikId)
@@ -91,7 +91,7 @@ public class UpatServiceImpl implements UpatService{
     }
 
     @Override
-    public void deleteById(Integer upat_id) {
+    public void deleteById(Long upat_id) {
 
         List<Rezervacija> rezervacijaList = this.rezervacijaRepository.findAll();
         for (Rezervacija rezervacija : rezervacijaList) {

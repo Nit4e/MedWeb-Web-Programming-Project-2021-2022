@@ -26,7 +26,7 @@ public class LekoviServiceImpl implements LekoviService {
     }
 
     @Override
-    public Optional<Lekovi> findById(Integer lekId) {
+    public Optional<Lekovi> findById(Long lekId) {
         return this.lekoviRepository.findById(lekId);
     }
 

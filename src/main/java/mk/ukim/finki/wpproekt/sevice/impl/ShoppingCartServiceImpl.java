@@ -39,7 +39,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public List<Lekovi> listAllLekoviInShoppingCart(Integer cartId) {
+    public List<Lekovi> listAllLekoviInShoppingCart(Long cartId) {
         if(!this.shoppingCartRepository.findById(cartId).isPresent())
             throw new ShoppingCartNotFoundException(cartId);
         return this.shoppingCartRepository.findById(cartId).get().getLekoviList();
@@ -59,7 +59,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCart addLekToShoppingCart(String username, Integer lek_id) {
+    public ShoppingCart addLekToShoppingCart(String username, Long lek_id) {
         ShoppingCart shoppingCart = this.getActiveShoppingCart(username);
         Lekovi lekovi = this.lekoviRepository.findById(lek_id)
                 .orElseThrow(() -> new LektNotFoundException(lek_id));

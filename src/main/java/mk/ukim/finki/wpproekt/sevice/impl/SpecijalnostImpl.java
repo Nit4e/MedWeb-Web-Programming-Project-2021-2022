@@ -36,7 +36,7 @@ public class SpecijalnostImpl implements SpecijalnostService {
     }
 
     @Override
-    public Optional<Specijalnost> findById(Integer id) {
+    public Optional<Specijalnost> findById(Long id) {
         return this.specijalnostRepository.findById(id);
     }
 }

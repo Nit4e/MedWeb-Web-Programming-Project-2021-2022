@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Upat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer upat_id;
+    private Long upat_id;
     private String dijagnoza;
 
     @ManyToOne

@@ -28,17 +28,17 @@ public class RezervacijaServiceImpl implements RezervacijaService {
     }
 
     @Override
-    public Optional<Rezervacija> findById(Integer id) {
+    public Optional<Rezervacija> findById(Long id) {
         return this.rezervacijaRepository.findById(id);
     }
 
     @Override
-    public List<Rezervacija> findAllValidReservations(Integer pacient_id) {
+    public List<Rezervacija> findAllValidReservations(Long pacient_id) {
         return this.rezervacijaRepository.listValidReservations(pacient_id);
     }
 
     @Override
-    public List<Rezervacija> findAllValidReservationsForDoktor(Integer doktor_id) {
+    public List<Rezervacija> findAllValidReservationsForDoktor(Long doktor_id) {
         return this.rezervacijaRepository.listValidReservationsForDoktor(doktor_id);
     }
 

@@ -24,8 +24,8 @@
                         <td th:text="${termin.getVreme()}"></td>
                         <td class="text-right">
                             <th:block sec:authorize="hasRole('ROLE_DOKTOR')">
-                                <a th:href="@{'/doktor/termin/{id}/delete' (id=${termin.getTermin_id()})}" th:method="GET" class="btn btn-sm btn-info">
-                                    <i class="fa fa-trash"> Отстрани </i>
+                                <a th:href="@{'/doktor/termin/{id}/delete' (id=${termin.getTermin_id()})}" th:method="GET">
+                                    <i class="btn btn-primary"> Отстрани </i>
                                 </a>
                             </th:block>
                     </tr>

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ShoppingCartService {
 
-    List<Lekovi> listAllLekoviInShoppingCart(Integer cartId);
+    List<Lekovi> listAllLekoviInShoppingCart(Long cartId);
     ShoppingCart getActiveShoppingCart(String username);
-    ShoppingCart addLekToShoppingCart(String username, Integer lek_id);
+    ShoppingCart addLekToShoppingCart(String username, Long lek_id);
 }

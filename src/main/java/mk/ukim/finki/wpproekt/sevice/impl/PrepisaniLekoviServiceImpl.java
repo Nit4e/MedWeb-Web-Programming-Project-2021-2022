@@ -42,11 +42,11 @@ public class PrepisaniLekoviServiceImpl implements PrepisaniLekoviService {
     }
 
     @Override
-    public PrepisaniLekovi save(String doktor_username, Integer lek_id, Integer pacient_id) {
+    public PrepisaniLekovi save(String doktor_username, Long lek_id, Long pacient_id) {
         Korisnik korisnik = this.korisnikRepository.findByUsername(doktor_username).get();
         Lekovi lek = this.lekoviRepository.findById(lek_id).get();
         Korisnik pacient = this.korisnikRepository.findById(pacient_id).get();
-        Integer pacientId = pacient.getCovek_id();
+        Long pacientId = pacient.getCovek_id();
         PrepisaniLekovi prepisaniLekovi = new PrepisaniLekovi();
         prepisaniLekovi.setCovek_id(korisnik.getCovek_id());
         prepisaniLekovi.setLek_id(lek.getLek_id());
@@ -65,7 +65,7 @@ public class PrepisaniLekoviServiceImpl implements PrepisaniLekoviService {
     }
 
     @Override
-    public PrepisaniLekovi save(String doktor_username, Integer lek_id, String pacient_username) {
+    public PrepisaniLekovi save(String doktor_username, Long lek_id, String pacient_username) {
         Korisnik korisnik = this.korisnikRepository.findByUsername(doktor_username).get();
         Lekovi lek = this.lekoviRepository.findById(lek_id).get();
         Korisnik pacient = this.korisnikRepository.findByUsername(pacient_username).get();

@@ -18,7 +18,7 @@ import java.util.List;
 public class Oddel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer oddel_id;
+    private Long oddel_id;
 
     @ManyToOne
     @JoinColumn(name = "bolnica_id", referencedColumnName = "bolnica_id", nullable = false)

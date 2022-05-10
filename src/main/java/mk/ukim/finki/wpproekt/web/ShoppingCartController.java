@@ -38,7 +38,7 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/add-lek/{id}")
-    public String addProductToShoppingCart(@PathVariable Integer id, HttpServletRequest req,
+    public String addProductToShoppingCart(@PathVariable Long id, HttpServletRequest req,
                                            Authentication authentication) {
         try {
             Korisnik korisnik = (Korisnik) authentication.getPrincipal();

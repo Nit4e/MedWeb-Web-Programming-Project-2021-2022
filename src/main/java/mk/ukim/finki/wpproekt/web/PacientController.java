@@ -58,7 +58,7 @@ public class PacientController {
 
     @GetMapping("/zakazi-termin-{id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
-    public String zakaziTermin (@PathVariable Integer id, Model model) {
+    public String zakaziTermin (@PathVariable Long id, Model model) {
 
         if (this.upatService.findById(id).isPresent()) {
             Upat upat = this.upatService.findById(id).get();
@@ -78,7 +78,7 @@ public class PacientController {
     }
 
     @GetMapping("/dostapni-termini-{id}")
-    public String getDostapniTerminiPage (@PathVariable Integer id, Model model) {
+    public String getDostapniTerminiPage (@PathVariable Long id, Model model) {
         Upat upat = (Upat) model.getAttribute("upat");
 
         if (this.korisnikService.findById(id).isPresent()) {
@@ -99,7 +99,7 @@ public class PacientController {
 
     @PostMapping("/rezervacija-{termin_id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
-    public String rezervacija (@PathVariable Integer termin_id, Model model){
+    public String rezervacija (@PathVariable Long termin_id, Model model){
         Upat upat = (Upat) model.getAttribute("upat");
 
         if (this.terminService.findOneTerminByTerminId(termin_id) != null) {
@@ -120,7 +120,7 @@ public class PacientController {
 
     @GetMapping("/validiraj-rezervacija-{id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
-    public String getTransakcijaPage (@PathVariable Integer id, Model model) {
+    public String getTransakcijaPage (@PathVariable Long id, Model model) {
         Upat upat = (Upat) model.getAttribute("upat");
 
         if (this.rezervacijaService.findById(id).isPresent()) {
@@ -136,7 +136,7 @@ public class PacientController {
 
     @PostMapping("/validiraj-rezervacija-{id}")
     @PreAuthorize("hasRole('ROLE_PACIENT')")
-    public String transakcija (@PathVariable Integer id, Model model) {
+    public String transakcija (@PathVariable Long id, Model model) {
 
         Upat upat = (Upat) model.getAttribute("upat");
         Termin termin = (Termin) model.getAttribute("termin");

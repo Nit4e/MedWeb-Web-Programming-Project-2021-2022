@@ -1,7 +1,7 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">МедВеб</h1>
+<!--            <h1 class="jumbotron-heading">МедВеб</h1>-->
             <h3 class="jumbotron-heading">Сите упати</h3>
         </div>
     </section>
@@ -35,15 +35,14 @@
                                           th:method="DELETE">
                                         <button type="submit"
                                                 class="btn btn-sm btn-danger delete-product">
-                                            <i class="fa fa-trash">Delete</i>
+                                            <i class="fa fa-trash">Избриши</i>
                                         </button>
                                     </form>
                                 </th:block>
                                 <th:block sec:authorize="hasRole('ROLE_DOKTOR')">
                                     <a th:if="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)}"
-                                       th:href="@{'/upati/edit-form-{id}' (id=${upat.getUpat_id})}"
-                                       class="btn btn-sm btn-info edit-upat">
-                                        <i class="fa fa-trash">Edit</i>
+                                       th:href="@{'/upati/edit-form-{id}' (id=${upat.getUpat_id})}">
+                                        <i class="btn btn-primary">Едитирај</i>
                                     </a>
                                     <i  class="fa fa-trash" th:unless="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)}">
                                         За упатот веќе има закажан термин, не може да се брише или ажурира!
@@ -79,9 +78,8 @@
                                         <td th:text="${upat.getRezervacija() == null || (upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null)} ? 'Нема закажан термин за упатот или истиот не е потврден со трансакција' : ${upat.getRezervacija().getTermin().getVreme()}"></td>
                                         <td class="text-right" th:if="${upat.getRezervacija() == null ||
                                                                 upat.getRezervacija() != null && upat.getRezervacija().getTransakcija() == null}">
-                                            <a th:href="@{'/pacient/zakazi-termin-{id}' (id=${upat.getUpat_id()})}"
-                                               class="btn btn-sm btn-info">
-                                                <i class="fa fa-trash"> Закажи термин </i>
+                                            <a th:href="@{'/pacient/zakazi-termin-{id}' (id=${upat.getUpat_id()})}">
+                                                <i class="btn btn-primary"> Закажи термин </i>
                                             </a>
                                         </td>
                                         <td class="text-right" th:unless="${upat.getRezervacija() == null ||

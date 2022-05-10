@@ -26,7 +26,7 @@ public class PrepisaniLekoviRepositoryCustomImpl implements PrepisaniLekoviRepos
     }
 
     @Override
-    public Optional<PrepisaniLekovi> findById(Integer lek_id) {
+    public Optional<PrepisaniLekovi> findById(Long lek_id) {
         return Optional.ofNullable(entityManager.createQuery("select p from PrepisaniLekovi p where p.lek_id = :lek_id",
                 PrepisaniLekovi.class).setParameter("lek_id", lek_id).getSingleResult());
     }

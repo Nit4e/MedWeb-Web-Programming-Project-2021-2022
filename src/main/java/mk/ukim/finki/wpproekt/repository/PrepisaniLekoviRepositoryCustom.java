@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface PrepisaniLekoviRepositoryCustom {
 
     List<Lekovi> findPacientLekovi();
-    Optional<PrepisaniLekovi> findById(Integer lek_id);
+    Optional<PrepisaniLekovi> findById(Long lek_id);
 }
